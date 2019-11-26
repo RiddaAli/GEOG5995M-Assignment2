@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plots module &#8212; Assignment 2 1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Plots">
+<span id="plots-module"></span><h1>Plots module<a class="headerlink" href="#module-Plots" title="Permalink to this headline">¶</a></h1>
+<p>Created on Mon Nov 18 15:05:09 2019</p>
+<p>&#64;author: riddaali</p>
+<dl class="function">
+<dt id="Plots.comparingModelsPerformance">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">comparingModelsPerformance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#comparingModelsPerformance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.comparingModelsPerformance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Code adapted from the following source:
+- <a class="reference external" href="https://machinelearningmastery.com/compare-machine-learning-algorithms-python-scikit-learn/">https://machinelearningmastery.com/compare-machine-learning-algorithms-python-scikit-learn/</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.correlation_matrix">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">correlation_matrix</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#correlation_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.correlation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating a correlation matrix to see the correlation between various variables
+Sources used (code adapted from the following websites):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/48035381/correlation-among-multiple-categorical-variables-pandas">https://stackoverflow.com/questions/48035381/correlation-among-multiple-categorical-variables-pandas</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec">https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mwaskom/seaborn/issues/1773">https://github.com/mwaskom/seaborn/issues/1773</a></p></li>
+<li><p><a class="reference external" href="https://www.drawingfromdata.com/how-to-rotate-axis-labels-in-seaborn-and-matplotlib">https://www.drawingfromdata.com/how-to-rotate-axis-labels-in-seaborn-and-matplotlib</a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">param [new_df]</dt>
+<dd class="field-odd"><p>[cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>correlation matrix plot]</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.featureImportance">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">featureImportance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#featureImportance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.featureImportance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating the “Feature Importance” plot for the Random Forest model by using
+the built-in class “<a href="#id1"><span class="problematic" id="id2">feature_importances_</span></a>”.</p>
+<p>Source used for guidance:
+- <a class="reference external" href="https://stackoverflow.com/questions/44101458/random-forest-feature-importance-chart-using-python">https://stackoverflow.com/questions/44101458/random-forest-feature-importance-chart-using-python</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_age">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_age</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 1: Obesity vs Age.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Age” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_alcohol">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_alcohol</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_alcohol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_alcohol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 6: Obesity vs Alcohol Consumption.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Alcohol Consumption” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_arthritis">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_arthritis</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_arthritis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_arthritis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 7: Obesity vs Arthritis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Arthritis” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_education">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_education</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_education"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_education" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 2: Obesity vs Education Level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Education Level” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_exercise">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_exercise</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_exercise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_exercise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 4: Obesity vs Exercise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Exercise” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_gender">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_gender</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_gender"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_gender" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 5: Obesity vs Gender.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Gender” plot]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Plots.plot_obesity_income">
+<code class="sig-prename descclassname">Plots.</code><code class="sig-name descname">plot_obesity_income</code><span class="sig-paren">(</span><em class="sig-param">new_df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Plots.html#plot_obesity_income"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Plots.plot_obesity_income" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot 3: Obesity vs Income Categories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>new_df</strong><strong>]</strong> – [cleaned dataframe that will be used to generate the</p>
+</dd>
+</dl>
+<p>“Obesity vs Income Categories” plot]</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Assignment 2</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ridda Ali.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Plots.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>DataAnalysis_Functions module &#8212; Assignment 2 1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <div class="section" id="dataanalysis-functions-module">
+<h1>DataAnalysis_Functions module<a class="headerlink" href="#dataanalysis-functions-module" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-DataAnalysis_Functions"></span><p>Created on Fri Nov 15 15:21:22 2019</p>
+<p>&#64;author: riddaali</p>
+<dl class="function">
+<dt id="DataAnalysis_Functions.dataCleaning">
+<code class="sig-prename descclassname">DataAnalysis_Functions.</code><code class="sig-name descname">dataCleaning</code><span class="sig-paren">(</span><em class="sig-param">df</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DataAnalysis_Functions.html#dataCleaning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DataAnalysis_Functions.dataCleaning" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the dataframe as an arugment.</p>
+<ol class="arabic simple">
+<li><p>Filtering missing and meaningless values (e.g. Don’t know, refused, etc.)
+by using the loc technique.</p></li>
+<li><p>Replacing Feature values with their actual meaning by using dictionaries.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>df</strong><strong>]</strong> – [dataframe that will be used to carry out the data cleaning]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[cleaned (without NAs, meaningless values, renamed values) dataframe]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="DataAnalysis_Functions.readFile">
+<code class="sig-prename descclassname">DataAnalysis_Functions.</code><code class="sig-name descname">readFile</code><span class="sig-paren">(</span><em class="sig-param">file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DataAnalysis_Functions.html#readFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#DataAnalysis_Functions.readFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating this “readFile()” function to read the csv files.
+It takes the file name as argument.</p>
+<p>1) Reading the BRFSS 2018 data: <a class="reference external" href="https://www.cdc.gov/brfss/annual_data/annual_2018.html">https://www.cdc.gov/brfss/annual_data/annual_2018.html</a>
+Converting it from a “<a href="#id1"><span class="problematic" id="id2">*</span></a>.xpt” (XPORT) file to a dataframe.</p>
+<p>PLEASE NOTE: I COULD NOT SUBMIT THE XPORT (‘LLCP2018.XPT’) FILE DUE TO ITS
+BIG SIZE (962 MB) SO IN ORDER TO EXECUTE THE FUNCTION BELOW, PLEASE UNZIP
+THE ‘LLCP2018XPT.zip’ FILE.</p>
+<p>With the help of documentation available at: <a class="reference external" href="https://pypi.org/project/xport/">https://pypi.org/project/xport/</a></p>
+<ol class="arabic simple" start="2">
+<li><p>Selecting features from the original dataframe by using the loc() function</p></li>
+<li><p>Renaming each column to improve its readability</p></li>
+<li><p>Converting each column into categorical variables</p></li>
+<li><p>Exporting the dataframe by saving it as a csv file</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>[</strong><strong>file_name</strong><strong>]</strong> – [name of the file that includes the data]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[CSV file that has been created in the specified path]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Assignment 2</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ridda Ali.
+
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+
+      |
+      <a href="_sources/DataAnalysis_Functions.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

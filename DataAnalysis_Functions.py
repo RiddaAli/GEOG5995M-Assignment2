@@ -17,7 +17,7 @@ def readFile(file_name):
     1) Reading the BRFSS 2018 data: https://www.cdc.gov/brfss/annual_data/annual_2018.html
     Converting it from a "*.xpt" (XPORT) file to a dataframe.
     
-    PLESAE NOTE: I COULD NOT SUBMIT THE XPORT ('LLCP2018.XPT') FILE DUE TO ITS
+    PLEASE NOTE: I COULD NOT SUBMIT THE XPORT ('LLCP2018.XPT') FILE DUE TO ITS
     BIG SIZE (962 MB) SO IN ORDER TO EXECUTE THE FUNCTION BELOW, PLEASE UNZIP
     THE 'LLCP2018XPT.zip' FILE.
     

@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plots &#8212; Assignment 2 1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for Plots</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Mon Nov 18 15:05:09 2019</span>
+
+<span class="sd">@author: riddaali</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+    
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>  
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> <span class="c1"># For plots/graphs  </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">model_selection</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">riddas_palette</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#fe46a5&#39;</span><span class="p">,</span> <span class="s1">&#39;#7f5f00&#39;</span><span class="p">,</span><span class="s1">&#39;#c1f80a&#39;</span><span class="p">,</span> <span class="s1">&#39;#3b638c&#39;</span><span class="p">,</span> <span class="s1">&#39;#82cafc&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;#90b134&#39;</span><span class="p">,</span> <span class="s1">&#39;#08ff08&#39;</span><span class="p">,</span>  <span class="s1">&#39;#9d7651&#39;</span><span class="p">,</span> <span class="s1">&#39;#C03028&#39;</span><span class="p">,</span> <span class="s1">&#39;#06470c&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;#7038F8&#39;</span><span class="p">,</span> <span class="s1">&#39;#E0C068&#39;</span><span class="p">,</span> <span class="s1">&#39;#EE99AC&#39;</span><span class="p">]</span>
+												
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># Placing the legend at the top right corner within the plot by setting the</span>
+<span class="c1"># &quot;loc&quot; (location) = 0 and the &quot;borderaxespad&quot; (pad among the axes and the </span>
+<span class="c1"># border) = 0.</span>
+<span class="c1"># =============================================================================						</span>
+<div class="viewcode-block" id="plot_obesity_age"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_age">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_age</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 1: Obesity vs Age.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Age&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>    
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Age_Categories&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="n">riddas_palette</span><span class="p">)</span>
+    
+    <span class="c1"># =============================================================================</span>
+    <span class="c1"># Saving the plot in the specified path by using the function &quot;savefig&quot; </span>
+    <span class="c1"># from the &quot;matplotlib.pyplot&quot; library</span>
+    <span class="c1"># =============================================================================</span>
+    <span class="n">fig1</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Age&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+
+
+<div class="viewcode-block" id="plot_obesity_education"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_education">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_education</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 2: Obesity vs Education Level.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Education Level&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Education_Level&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span> 
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Level of Education&quot;</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig2</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Education&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+
+<div class="viewcode-block" id="plot_obesity_income"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_income">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_income</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 3: Obesity vs Income Categories.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Income Categories&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Income_Categories&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Income Categories&quot;</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig3</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Income&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="plot_obesity_exercise"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_exercise">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_exercise</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 4: Obesity vs Exercise.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Exercise&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Exercise&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Exercise&quot;</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig4</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Exercise&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+
+<div class="viewcode-block" id="plot_obesity_gender"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_gender">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_gender</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 5: Obesity vs Gender.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Gender&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Gender&quot;</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig5</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Gender&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+     
+<div class="viewcode-block" id="plot_obesity_alcohol"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_alcohol">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_alcohol</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 6: Obesity vs Alcohol Consumption.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Alcohol Consumption&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig6</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>    
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Alcohol_Consumption&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Alcohol Consumption&quot;</span><span class="p">,</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig6</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Alcohol&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+<div class="viewcode-block" id="plot_obesity_arthritis"><a class="viewcode-back" href="../Plots.html#Plots.plot_obesity_arthritis">[docs]</a><span class="k">def</span> <span class="nf">plot_obesity_arthritis</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Plot 7: Obesity vs Arthritis.</span>
+<span class="sd">    </span>
+<span class="sd">    :param [new_df]: [cleaned dataframe that will be used to generate the </span>
+<span class="sd">    &quot;Obesity vs Arthritis&quot; plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fig7</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Arthritis&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">new_df</span><span class="p">,</span> 
+                  <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Arthritis&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+    <span class="n">fig7</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Obesity_vs_Arthritis&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+    
+
+
+<div class="viewcode-block" id="featureImportance"><a class="viewcode-back" href="../Plots.html#Plots.featureImportance">[docs]</a><span class="k">def</span> <span class="nf">featureImportance</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Creating the &quot;Feature Importance&quot; plot for the Random Forest model by using</span>
+<span class="sd">    the built-in class &quot;feature_importances_&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    Source used for guidance:</span>
+<span class="sd">    - https://stackoverflow.com/questions/44101458/random-forest-feature-importance-chart-using-python</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;BRFSS_cleaned.csv&#39;</span><span class="p">)</span>
+    <span class="n">lr_df</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+    
+    <span class="c1"># Defining independent variables (&quot;iv&quot;)</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="n">lr_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Education_Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Income_Categories&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;Exercise&#39;</span><span class="p">,</span> <span class="s1">&#39;Age_Categories&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Alcohol_Consumption&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Arthritis&#39;</span><span class="p">]]</span>
+    
+    <span class="c1"># Defining the dependent variable (&quot;dv&quot;)</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">lr_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">]]</span>
+    
+    <span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+    <span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iv</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+    
+    <span class="c1"># Using the built-in class &quot;feature_importances_&quot; of the Random Forest</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span> 
+    
+    <span class="c1"># Plotting graph of feature importances for clearer visualization </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">features_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">iv</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> 
+    <span class="n">features_importance</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;barh&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Feature_Importance_plot&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+    
+    
+<div class="viewcode-block" id="comparingModelsPerformance"><a class="viewcode-back" href="../Plots.html#Plots.comparingModelsPerformance">[docs]</a><span class="k">def</span> <span class="nf">comparingModelsPerformance</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Code adapted from the following source:</span>
+<span class="sd">    - https://machinelearningmastery.com/compare-machine-learning-algorithms-python-scikit-learn/</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;BRFSS_cleaned.csv&#39;</span><span class="p">)</span>
+    <span class="n">lr_df</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+    
+    <span class="c1"># Defining independent variables (&quot;iv&quot;)</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="n">lr_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Education_Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Income_Categories&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;Exercise&#39;</span><span class="p">,</span> <span class="s1">&#39;Age_Categories&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Alcohol_Consumption&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Arthritis&#39;</span><span class="p">]]</span>
+    
+    <span class="c1"># Defining the dependent variable (&quot;dv&quot;)</span>
+    <span class="n">dv</span> <span class="o">=</span> <span class="n">lr_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Overweight_Obese&#39;</span><span class="p">]]</span>
+    
+    <span class="n">prediction_models</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">prediction_models</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;Logisitic Regression&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">()))</span>
+    <span class="n">prediction_models</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;Random Forest&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">()))</span>
+    
+    <span class="c1"># Evaluating the performance of each model:</span>
+    <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">models_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accuracy_score</span> <span class="o">=</span> <span class="s1">&#39;accuracy&#39;</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">prediction_models</span><span class="p">:</span>
+        
+    	<span class="n">folds10</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    	<span class="n">cv_outcomes</span> <span class="o">=</span> <span class="n">model_selection</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">iv</span><span class="p">,</span> <span class="n">dv</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">folds10</span><span class="p">,</span> 
+                                                   <span class="n">scoring</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">)</span>
+    	<span class="n">outcomes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cv_outcomes</span><span class="p">)</span>
+    	<span class="n">models_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    	<span class="n">mean_accuracy</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cv_outcomes</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+        <span class="c1"># Logisitic Regression: 0.6881 | Random Forest: 0.6926</span>
+    	<span class="nb">print</span><span class="p">(</span><span class="n">mean_accuracy</span><span class="p">)</span> 
+   
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Logistic Regression VS Random Forest&#39;</span><span class="p">)</span>
+    <span class="c1"># 1x1 Grid </span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">models_names</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;./Plots/Models_comparison_plot&#39;</span><span class="p">)</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+<div class="viewcode-block" id="correlation_matrix"><a class="viewcode-back" href="../Plots.html#Plots.correlation_matrix">[docs]</a><span class="k">def</span> <span class="nf">correlation_matrix</span><span class="p">(</span><span class="n">new_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creating a correlation matrix to see the correlation between various variables</span>
+<span class="sd">    Sources used (code adapted from the following websites): </span>
+<span class="sd">      - https://stackoverflow.com/questions/48035381/correlation-among-multiple-categorical-variables-pandas</span>
+<span class="sd">      - https://towardsdatascience.com/better-heatmaps-and-correlation-matrix-plots-in-python-41445d0f2bec</span>
+<span class="sd">      - https://github.com/mwaskom/seaborn/issues/1773</span>
+<span class="sd">      - https://www.drawingfromdata.com/how-to-rotate-axis-labels-in-seaborn-and-matplotlib</span>
+<span class="sd">      </span>
+<span class="sd">      </span>
+<span class="sd">      :param [new_df]: [cleaned dataframe that will be used to generate the</span>
+<span class="sd">      correlation matrix plot]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># =============================================================================</span>
+    <span class="c1"># Encoding the dataframe to convert it into an enumerated type by using </span>
+    <span class="c1"># the &quot;pd.factorize()&quot; function. Specifying the correlation method (&#39;pearson&#39;)</span>
+    <span class="c1"># and the minimum number of observations (&quot;min_periods=1&quot;)</span>
+    <span class="c1"># =============================================================================</span>
+    <span class="n">corr_data</span> <span class="o">=</span> <span class="n">new_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span><span class="p">,</span> 
+                            <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">corr</span> <span class="o">=</span> <span class="n">corr_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bottom</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span> <span class="c1"># Getting the current y-axis limits (coordinates)</span>
+    <span class="n">bottom</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="c1"># adding 0.5 to the bottom</span>
+    <span class="n">top</span> <span class="o">-=</span> <span class="mf">0.5</span> <span class="c1"># subtracting 0.5 from the top</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span> <span class="c1"># updating the ylim for bottom &amp; top values</span>
+    
+    
+    <span class="c1"># Rotating the tick labels to ensure that they are clearly visible </span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span>
+        <span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span>
+    <span class="p">)</span>
+    <span class="c1">#plt.savefig(&#39;./Plots/Correlation_matrix_plot&#39;) </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+    
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># ax = sns.heatmap(</span>
+<span class="c1">#     corr, </span>
+<span class="c1">#     vmin=-1, vmax=1, center=0,</span>
+<span class="c1">#     cmap=sns.diverging_palette(220, 20, sep=20, as_cmap=True),</span>
+<span class="c1">#     square=True</span>
+<span class="c1"># )</span>
+<span class="c1"># ax.set_xticklabels(</span>
+<span class="c1">#     ax.get_xticklabels(),</span>
+<span class="c1">#     rotation=45,</span>
+<span class="c1">#     horizontalalignment=&#39;right&#39;</span>
+<span class="c1"># )</span>
+<span class="c1"># </span>
+<span class="c1"># =============================================================================</span>
+
+
+
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># def creatingBoxplots(x,y, df):</span>
+<span class="c1">#     x = df[df[&#39;Education_Level&#39;, &#39;Income_Categories&#39;, </span>
+<span class="c1">#                   &#39;Exercise&#39;, &#39;Age_Categories&#39;, &#39;Gender&#39;, &#39;Alcohol_Consumption&#39;,</span>
+<span class="c1">#                   &#39;Arthritis&#39;]]</span>
+<span class="c1">#     y = df[df[&#39;Overweight_Obese&#39;]]</span>
+<span class="c1">#     df1 = x</span>
+<span class="c1">#     df2 = y</span>
+<span class="c1"># </span>
+<span class="c1">#     lst = [&#39;Education_Level&#39;, &#39;Income_Categories&#39;, </span>
+<span class="c1">#                   &#39;Exercise&#39;, &#39;Age_Categories&#39;, &#39;Gender&#39;, &#39;Alcohol_Consumption&#39;,</span>
+<span class="c1">#                   &#39;Arthritis&#39;]</span>
+<span class="c1">#     </span>
+<span class="c1">#     i = 0</span>
+<span class="c1">#     </span>
+<span class="c1">#     for item in lst:</span>
+<span class="c1">#         plt.figure(i)</span>
+<span class="c1">#     </span>
+<span class="c1">#         x1= df1[item].values</span>
+<span class="c1">#         x2 = df2[item].values</span>
+<span class="c1">#     </span>
+<span class="c1">#         plt.boxplot([x1, x2])</span>
+<span class="c1">#         plt.title(item)</span>
+<span class="c1">#     </span>
+<span class="c1">#         i = i+1    </span>
+<span class="c1"># =============================================================================</span>
+ 
+<span class="c1"># =============================================================================</span>
+<span class="c1"># from ggplot import *</span>
+<span class="c1"># import seaborn as sns # For plots/graphs</span>
+<span class="c1"># import plotnine as p9</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># plt.style.use(&#39;classic&#39;)</span>
+<span class="c1"># </span>
+<span class="c1"># from bokeh.io import show, output_file</span>
+<span class="c1"># from bokeh.models import ColumnDataSource</span>
+<span class="c1"># from bokeh.palettes import Spectral6</span>
+<span class="c1"># from bokeh.plotting import figure</span>
+<span class="c1"># from bokeh.transform import factor_cmap</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># # sns.catplot(x=&quot;Education_Level&quot;, y=&quot;Overweight_Obese&quot;, hue=&quot;Education_Level&quot;,</span>
+<span class="c1"># #             kind=&quot;swarm&quot;, data=new_df)</span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># </span>
+<span class="c1"># new_df = pd.read_csv(&#39;BRFSS_cleaned.csv&#39;)</span>
+<span class="c1"># new_df = new_df.astype(&#39;category&#39;)</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># output_file(&quot;colormapped_bars.html&quot;)</span>
+<span class="c1"># </span>
+<span class="c1"># Overweight_Obese = [&#39;NOT Overweight/Obese&#39;, &#39;Overweight/Obese&#39;]</span>
+<span class="c1"># Gender = [&#39;Male&#39;, &#39;Female&#39;]</span>
+<span class="c1"># </span>
+<span class="c1"># source = ColumnDataSource(data=new_df)</span>
+<span class="c1"># </span>
+<span class="c1"># p = figure(x_range=Gender, plot_height=250, toolbar_location=None, title=&quot;Gender&quot;)</span>
+<span class="c1"># p.vbar(x=&#39;Gender&#39;, top=&#39;Overweight_Obese&#39;, width=0.9, source=source,</span>
+<span class="c1">#        line_color=&#39;white&#39;, fill_color=factor_cmap(&#39;Gender&#39;, palette=Spectral6, factors=Gender))</span>
+<span class="c1"># </span>
+<span class="c1"># p.xgrid.grid_line_color = None</span>
+<span class="c1"># p.y_range.start = 0</span>
+<span class="c1"># p.y_range.end = 9</span>
+<span class="c1"># p.legend.orientation = &quot;horizontal&quot;</span>
+<span class="c1"># p.legend.location = &quot;top_center&quot;</span>
+<span class="c1"># </span>
+<span class="c1"># show(p)</span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># # chart = Chart(new_df)</span>
+<span class="c1"># # chart.mark_circle().encode(</span>
+<span class="c1"># #     x=&#39;Gender&#39;,</span>
+<span class="c1"># #     y=&#39;Overweight_Obese&#39;,</span>
+<span class="c1"># #     color=&#39;Gender&#39;</span>
+<span class="c1"># # )</span>
+<span class="c1"># # </span>
+<span class="c1"># # </span>
+<span class="c1"># </span>
+<span class="c1"># ggplot(new_df , aes(x=&#39;Gender&#39;, y=&#39;Overweight_Obese&#39;)) +\</span>
+<span class="c1">#     geom_point() </span>
+<span class="c1"># </span>
+<span class="c1"># (p9.ggplot(data=new_df,</span>
+<span class="c1">#            mapping=p9.aes(x=&#39;Gender&#39;,</span>
+<span class="c1">#                           y=&#39;Overweight_Obese&#39;))</span>
+<span class="c1">#     + p9.geom_point()</span>
+<span class="c1"># )</span>
+<span class="c1"># p9.ggplot(data=new_df, mapping=p9.aes(x=&#39;Gender&#39;, y = &#39;Overweight_Obese&#39;, color= &#39;Gender&#39;)+  p9.geom_point())</span>
+<span class="c1"># plot = ggplot(new_df, aes(x=&#39;Gender&#39;, y = &#39;Overweight_Obese&#39;, color= &#39;Gender&#39;)) + geom_point()</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># (ggplot(data=new_df)+ aes(x = &#39;Gender&#39;, y = &#39;Overweight_Obese&#39;, color = &#39;Gender&#39;) + geom_point())</span>
+<span class="c1">#              labs(title=&#39; Obesity vs Gender&#39;, x=&#39;Gender&#39;, y=&#39;Obesity&#39;) +</span>
+<span class="c1"># scale_fill_manual(name = &#39;Gender&#39;, values = [&quot;deepskyblue1&quot;, &quot;deeppink1&quot;]) +</span>
+<span class="c1"># scale_x_continuous(</span>
+<span class="c1">#      limits = (1, 2),</span>
+<span class="c1">#      labels = labels(&#39;Male&#39;, &#39;Female&#39;),</span>
+<span class="c1">#      breaks = breaks(1,2,1)</span>
+<span class="c1">#      ) +</span>
+<span class="c1">#  scale_y_continuous(</span>
+<span class="c1">#      limits = (1, 2),</span>
+<span class="c1">#      labels = labels(&#39;NOT Overweight/Obese&#39;, &#39;Overweight/Obese&#39;),</span>
+<span class="c1">#      breaks = breaks(1,2,1))))</span>
+<span class="c1"># </span>
+<span class="c1"># fig = ggplot(aes(x = &#39;Gender&#39;, y = &#39;Overweight_Obese&#39;, color = &#39;Gender&#39;), data = new_df) </span>
+<span class="c1"># fig + geom_point() + labs(title=&#39; Obesity vs Gender&#39;, x=&#39;Gender&#39;, y=&#39;Obesity&#39;) </span>
+<span class="c1">#  </span>
+<span class="c1"># # </span>
+<span class="c1"># # </span>
+<span class="c1"># # (ggplot(new_df)   </span>
+<span class="c1"># # + aes(x=&#39;Gender&#39;, y=&#39;Overweight_Obese&#39;, color=&#39;Gender&#39;)    # defining what variable to use</span>
+<span class="c1"># # + geom_point() # defining the type of plot to use</span>
+<span class="c1"># # + labs(title=&#39; Obesity vs Gender&#39;, x=&#39;Gender&#39;, y=&#39;Obesity&#39;))</span>
+<span class="c1"># # </span>
+<span class="c1"># # </span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># </span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># plt.style.use(&#39;classic&#39;)</span>
+<span class="c1"># %matplotlib inline</span>
+<span class="c1"># import numpy as np</span>
+<span class="c1"># import pandas as pd</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># # # Source used for guidance: </span>
+<span class="c1"># # #https://stackoverflow.com/questions/34251641/how-to-make-a-bar-plot-of-non-numerical-data-in-pandas</span>
+<span class="c1"># # =============================================================================</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># import dexplot as dxp</span>
+<span class="c1"># dxp.aggplot(agg=&#39;Overweight_Obese&#39;, data=new_df, hue=&#39;Income_Categories&#39;)</span>
+<span class="c1"># </span>
+<span class="c1"># dxp.aggplot(agg=&#39;Education_Level&#39;, data=new_df, hue=&#39;Overweight_Obese&#39;,  stacked=True)</span>
+<span class="c1"># </span>
+<span class="c1"># # YES</span>
+<span class="c1"># dxp.aggplot(agg=&#39;Overweight_Obese&#39;, data=new_df, hue=&#39;Gender&#39;, kind=&#39;bar&#39;)</span>
+<span class="c1"># plt.xlabel(&quot;Overweight/Obese&quot;)</span>
+<span class="c1"># </span>
+<span class="c1"># fig, = dxp.heatmap(data=new_df, corr=True, figsize=(16, 16))</span>
+<span class="c1"># </span>
+<span class="c1"># </span>
+<span class="c1"># sns.barplot(x=&quot;Education_Level&quot;,y=&quot;Overweight_Obese&quot;,data=new_df)</span>
+<span class="c1"># p = sns.barplot(x=&quot;Education_Level&quot;,y=&quot;Overweight_Obese&quot;,hue=&quot;Gender&quot;,data=new_df)</span>
+<span class="c1"># _plt.setp(p.get_xticklabels(), rotation=90)  # Rotate labels</span>
+<span class="c1"># </span>
+<span class="c1"># with sns.axes_style(style=&#39;ticks&#39;):</span>
+<span class="c1">#     g = sns.factorplot(int(Age_Categories), int(Overweight_Obese), &quot;Gender&quot;, data=new_df, kind=&quot;box&quot;)</span>
+<span class="c1">#     g.set_axis_labels(&quot;Age_Categories&quot;, &quot;Overweight_Obese&quot;)   </span>
+<span class="c1">#     </span>
+<span class="c1">#     </span>
+<span class="c1"># =============================================================================</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Assignment 2</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ridda Ali.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
