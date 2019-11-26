@@ -20,7 +20,11 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from matplotlib.colors import ListedColormap
 
+# =============================================================================
 # Reading the BRFSS 2018 data: https://www.cdc.gov/brfss/annual_data/annual_2018.html
+# PLEASE MAKE SURE THAT YOU HAVE UNZIPPED THE "LLCP2018XPT.zip" FILE BEFORE
+# EXECUTING THE FOLLOWING "readFile" FUNCTION.
+# =============================================================================
 reading_file = DataAnalysis_Functions.readFile('LLCP2018.XPT')
 
 # =============================================================================
