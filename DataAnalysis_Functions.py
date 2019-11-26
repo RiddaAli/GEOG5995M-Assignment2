@@ -15,7 +15,12 @@ def readFile(file_name):
     It takes the file name as argument.
     
     1) Reading the BRFSS 2018 data: https://www.cdc.gov/brfss/annual_data/annual_2018.html
-    Converting it from a "*.xpt" (XPORT) file to a dataframe
+    Converting it from a "*.xpt" (XPORT) file to a dataframe.
+    
+    PLESAE NOTE: I COULD NOT SUBMIT THE XPORT ('LLCP2018.XPT') FILE DUE TO ITS
+    BIG SIZE (962 MB) SO IN ORDER TO EXECUTE THE FUNCTION BELOW, PLEASE UNZIP
+    THE 'LLCP2018XPT.zip' FILE.
+    
     With the help of documentation available at: https://pypi.org/project/xport/
     
     2) Selecting features from the original dataframe by using the loc() function
