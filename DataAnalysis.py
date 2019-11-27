@@ -25,7 +25,7 @@ from matplotlib.colors import ListedColormap
 # PLEASE MAKE SURE THAT YOU HAVE UNZIPPED THE "LLCP2018XPT.zip" FILE BEFORE
 # EXECUTING THE FOLLOWING "readFile()" FUNCTION.
 # =============================================================================
-reading_file = DataAnalysis_Functions.readFile('LLCP2018.XPT')
+reading_file = DataAnalysis_Functions.readFile('LLCP2018.XPT ')
 
 # =============================================================================
 # Reading the csv file ('BRFSS2018.csv') that was created  by calling the
@@ -362,6 +362,22 @@ def random_forest():
     
 
 random_forest()
+
+
+# =============================================================================
+# ALL THE FUNCTIONS HAVE BEEN TESTED THOROUGHLY: (TESTED: YES OR NO)
+#     - "readFile(file_name)": YES
+#     - "dataCleaning(df)": YES
+#     -  All the plots located inside the "Plots.py": YES
+#     - "logistic_regression()": YES
+#     - FEATURE SELECTION: YES
+#     - "random_forest()": YES
+# 
+# =============================================================================
+
+
+
+
 
 
 
