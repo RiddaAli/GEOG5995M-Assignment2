@@ -16,7 +16,9 @@
     - BRFSS_cleaned.csv: includes cleaned dataset (without missing and meaningless values such as "Don't know").      
                          Futhermore, replacing Feature values with their actual meaning.
 
-    Plots folder: containing all the plots as images in "png" format.
+    Plots folder: containing all the plots as images in "png" format, which will be generated after calling the plots functions
+    			  inside the "DataAnalysis.py" file (currently includes plots generated from the previous call to the plots functions).
+
 
     Python_assignment2_UML.png: UML diagram to show the whole process.
 
@@ -30,7 +32,8 @@
          "DataAnalysis_Functions.py" and "Plots.py".
     3) At this point the csv files containing specific features from the original dataset are created:
        "BRFSS2018.csv" and  "BRFSS_cleaned.csv".
-    4) Plots folder is created, which contains all the plots generated for Exploratory Data Analysis purposes.
+    4) Plots folder is already created, which will contain all the plots generated for Exploratory Data Analysis purposes, once the plots functions 
+       are called inside the "DataAnalysis.py" file (currently includes plots generated from the previous call to the plots functions).
     5) Data Analysis is perfomed and the main results are printed in the console.
 
 
